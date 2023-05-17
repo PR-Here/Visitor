@@ -6,6 +6,7 @@ import {
   Alert,
   Platform,
   ImageBackground,
+  PermissionsAndroid,
 } from "react-native";
 import React, { useState } from "react";
 import { Styles } from "./Style";
@@ -29,6 +30,40 @@ export default function ScannerImage({ navigation }) {
     navigation.goBack();
   };
 
+  const requestGalleryPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        {
+          title: "Gallery Permission",
+          message:
+            "App needs access to your gallery to select the gallery image.So you can upload in the App.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK",
+        }
+      );
+
+      console.log(granted);
+
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        // Permission granted, you can now access the gallery
+        // Perform the desired actions here
+        ImagePicker.openPicker({
+          width: 300,
+          height: 400,
+          cropping: true,
+        }).then((image) => {
+          console.log(image);
+        });
+      } else {
+        // Permission denied, handle it accordingly
+      }
+    } catch (error) {
+      console.warn("Error requesting gallery permission:", error);
+    }
+  };
+
   const openCamera = async () => {
     const permissionStatus = await AndroidCameraPermission();
     if (permissionStatus || Platform.OS == "ios" || Platform.OS == "android") {
@@ -42,44 +77,11 @@ export default function ScannerImage({ navigation }) {
         console.log(image);
         setProfileCameraImage(image.path);
       });
-    } else {
-      Alert.alert(
-        "Camera permission denied. Please enable from Device setting."
-      );
     }
   };
 
   const openGallery = async () => {
-    const permissionStatus = await AndroidCameraPermission();
-    request(
-      Platform.OS === "ios"
-        ? PERMISSIONS.IOS.CAMERA
-        : PERMISSIONS.ANDROID.CAMERA
-    ).then((result) => {
-      console.log(
-        "permissionStatus .... ",
-        permissionStatus,
-        result,
-        result == "denied"
-      );
-      if (result == "blocked" || result == "denied") {
-        Alert.alert(
-          "Gallery permission denied. Please enable from Device setting."
-        );
-      }
-    });
-    if (permissionStatus || Platform.OS == "ios" || Platform.OS == "android") {
-      ImagePicker.openPicker({
-        width: 300,
-        height: 400,
-        cropping: true,
-        includeBase64: true,
-      }).then((image) => {});
-    } else {
-      Alert.alert(
-        "Gallery permission denied. Please enable from Device setting."
-      );
-    }
+    requestGalleryPermission();
   };
 
   const showAlert = (title: string, msg: string) => {

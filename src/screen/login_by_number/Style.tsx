@@ -9,9 +9,8 @@ import { FontName, FontSize } from "../../utils/FontName";
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: MyColor.WHITE,
     paddingTop: hp(2),
-    paddingHorizontal:hp(3)
+    marginHorizontal:hp(3)
   },
   loginButton: {
     width: wp("90%"),

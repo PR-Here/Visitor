@@ -9,9 +9,8 @@ import { FontName, FontSize } from "../../utils/FontName";
 export const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: hp(3),
+    marginHorizontal: hp(3),
     paddingTop: hp(2),
-    backgroundColor: MyColor.WHITE,
   },
   visitReasontext: {
     fontFamily: FontName.SEN_BOLD,

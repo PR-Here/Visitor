@@ -10,8 +10,7 @@ import { FontName, FontSize } from "../../utils/FontName";
 export const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: MyColor.WHITE,
-    paddingHorizontal: hp(3),
+    marginHorizontal: hp(3),
     paddingTop: hp(2),
   },
   loginText: {

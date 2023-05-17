@@ -9,15 +9,14 @@ import { FontName, FontSize } from "../../utils/FontName";
 export const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: hp(3),
+    marginHorizontal: hp(3),
     paddingTop: hp(2),
-    backgroundColor: MyColor.WHITE,
   },
   visitReasontext: {
     fontFamily: FontName.SEN_BOLD,
     color: MyColor.BLACK,
     fontSize: hp(5),
-    width: "70%",
+    width: "80%",
     marginTop: hp(2),
   },
 
@@ -33,7 +32,7 @@ export const Styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
-    bottom: 80,
+    bottom: hp(14),
     fontSize: FontSize.TWO_POINT_eight,
   },
   buttonView: {
@@ -110,6 +109,6 @@ export const Styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    marginTop:hp(1)
+    marginTop: hp(2),
   },
 });

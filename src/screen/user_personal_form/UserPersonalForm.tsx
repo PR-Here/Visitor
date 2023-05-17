@@ -128,7 +128,7 @@ export default function UserPersonalForm({ navigation }) {
                 setYesToggleCheckBox(newValue);
               }}
             />
-            <Text style={Styles.firstNameText}>Yes</Text>
+            <Text style={[Styles.firstNameText,{marginLeft:10}]}>Yes</Text>
           </View>
           {/* No Checkbox */}
           <View style={Styles.checkBoxView}>
@@ -142,7 +142,7 @@ export default function UserPersonalForm({ navigation }) {
                 setYesToggleCheckBox(!newValue);
               }}
             />
-            <Text style={Styles.firstNameText}>No</Text>
+            <Text style={[Styles.firstNameText,{marginLeft:10}]}>No</Text>
           </View>
         </View>
       </View>

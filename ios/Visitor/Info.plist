@@ -61,5 +61,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Allowing access to your photo library to upload and share images.Its secure and private.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Your message to user when the camera is accessed for the first time</string>
+  <!-- Include this only if you are planning to use the microphone for video recording -->
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Allowing access to the microphone to record and share audio messages.</string>
 </dict>
 </plist>

@@ -14,7 +14,7 @@ const Styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: hp("3%"),
-    paddingHorizontal: hp(3),
+    marginHorizontal: hp(3),
   },
   verifyText: {
     fontFamily: FontName.SEN_BOLD,

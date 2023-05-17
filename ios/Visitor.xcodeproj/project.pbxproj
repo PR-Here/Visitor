@@ -13,6 +13,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3EDC257E9343487AABDA59C2 /* Sen-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81B83953EBF641AD9869F4FA /* Sen-ExtraBold.ttf */; };
+		44EB58F52A1531BC00ED8DF4 /* libRNPermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EB58F42A1531BC00ED8DF4 /* libRNPermissions.a */; };
+		44EB58F72A1531C300ED8DF4 /* libPermission-Camera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EB58F62A1531C300ED8DF4 /* libPermission-Camera.a */; };
 		7699B88040F8A987B510C191 /* libPods-Visitor-VisitorTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Visitor-VisitorTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8B814AE9F4574D98BA20C8FB /* Sen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDD67517B94C434A9679AC38 /* Sen-Bold.ttf */; };
@@ -41,6 +43,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Visitor/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Visitor-VisitorTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Visitor-VisitorTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-Visitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Visitor.debug.xcconfig"; path = "Target Support Files/Pods-Visitor/Pods-Visitor.debug.xcconfig"; sourceTree = "<group>"; };
+		44EB58F42A1531BC00ED8DF4 /* libRNPermissions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNPermissions.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		44EB58F62A1531C300ED8DF4 /* libPermission-Camera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPermission-Camera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5709B34CF0A7D63546082F79 /* Pods-Visitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Visitor.release.xcconfig"; path = "Target Support Files/Pods-Visitor/Pods-Visitor.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Visitor-VisitorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Visitor-VisitorTests.debug.xcconfig"; path = "Target Support Files/Pods-Visitor-VisitorTests/Pods-Visitor-VisitorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Visitor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Visitor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,7 +69,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44EB58F52A1531BC00ED8DF4 /* libRNPermissions.a in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-Visitor.a in Frameworks */,
+				44EB58F72A1531C300ED8DF4 /* libPermission-Camera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +121,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44EB58F62A1531C300ED8DF4 /* libPermission-Camera.a */,
+				44EB58F42A1531BC00ED8DF4 /* libRNPermissions.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-Visitor.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Visitor-VisitorTests.a */,
