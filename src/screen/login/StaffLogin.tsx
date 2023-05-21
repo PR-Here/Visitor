@@ -6,15 +6,19 @@ import MyButton from "../../component/MyButton";
 import { MyColor } from "../../utils/MyColor";
 import { MyString } from "../../utils/MyString";
 import MyErrorMsg from "../../component/MyErrorMsg";
+import AppLoader from "../../utils/AppLoader";
+import { StaffLogin, MOBILE_internal_Api } from "../../apiCall/ApiCall";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
   const [error, setError] = useState("");
   const [errorPassword, setPasswordError] = useState("");
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("mgrbiru@gmail.com");
+  const [password, setPassword] = useState("123456");
   const [isValid, setIsValid] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (userName == "") {
       setIsValid(false);
       setError("Please enter Username.");
@@ -26,13 +30,28 @@ export default function Login({ navigation }) {
       setPasswordError("Password must be greater 5 digit.");
     }
     if (userName && password && password.length > 5) {
+      setLoading(true);
       setPasswordError("");
       setError("");
-      navigation.navigate(MyString.Visit_Purpose);
+      const res = await StaffLogin(password, userName);
+      if (res?.statusCode == "0") {
+        setLoading(false);
+        const mobileApiRes = await MOBILE_internal_Api();
+        console.log("RES... ", mobileApiRes);
+        if (mobileApiRes?.statusCode == "0") {
+          const data = {
+            ...res,
+            mobileApiRes,
+          };
+          await AsyncStorage.setItem("staffData", JSON.stringify(data));
+          navigation.navigate(MyString.Login_by_phone);
+        }
+      } else {
+        setError(res?.statusMsg);
+      }
     }
-
-    console.log(userName, password, isValid);
   };
+
   return (
     <SafeAreaView style={Styles.container}>
       <Header navigation={navigation} />
@@ -50,6 +69,7 @@ export default function Login({ navigation }) {
         onFocus={() => {
           setError("");
         }}
+        value={userName}
       />
       {error ? (
         <MyErrorMsg show={true} msg={error} style={Styles.errorMsg} />
@@ -73,11 +93,17 @@ export default function Login({ navigation }) {
           setPassword(e);
         }}
         onFocus={() => {}}
+        value={password}
       />
       {errorPassword ? (
         <MyErrorMsg show={true} msg={errorPassword} style={Styles.errorMsg} />
       ) : null}
-      <Text onPress={() => {navigation.navigate(MyString.Forgot_Password)}} style={Styles.forgotText}>
+      <Text
+        onPress={() => {
+          navigation.navigate(MyString.Forgot_Password);
+        }}
+        style={Styles.forgotText}
+      >
         Forgot Password?
       </Text>
       <MyButton
@@ -85,7 +111,12 @@ export default function Login({ navigation }) {
         colors={[MyColor.GREEN, MyColor.GREEN]}
         onPress={handleClick}
         containerStyle={Styles.loginBtn}
+        rightIcon={false}
+        leftIcon={false}
+        titleStyle={{ color: MyColor.WHITE }}
+        leftIconStyle={{}}
       />
+      <AppLoader show={loading} />
     </SafeAreaView>
   );
 }

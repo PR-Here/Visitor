@@ -25,8 +25,9 @@ const Styles = StyleSheet.create({
   ChatsApp_will_Text: {
     fontFamily: FontName.SEN,
     fontSize: FontSize.ONE_POINT_SEVEN,
-    marginTop: hp("3%"),
+    marginTop: hp(1),
     color: MyColor.BLACK,
+    textAlign: "center",
   },
   textInput: {
     fontFamily: FontName.SEN,
@@ -35,6 +36,7 @@ const Styles = StyleSheet.create({
   button: {
     width: "100%",
     height: hp("6%"),
+    justifyContent: "center",
   },
   buttonText: {
     fontFamily: FontName.SEN_BOLD,
@@ -92,9 +94,10 @@ const Styles = StyleSheet.create({
   what_is_text: {
     fontFamily: FontName.SEN_BOLD,
     color: MyColor.BLACK,
-    fontSize: hp(5),
-    width: "70%",
-    marginTop: hp(2),
+    fontSize: hp(3),
+    width: "100%",
+    marginTop: hp(12),
+    textAlign: "center",
   },
 });
 

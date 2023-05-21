@@ -7,6 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { MyString } from "../utils/MyString";
+import Login from '../screen/login/StaffLogin';
 
 export default function InitialLoading({ navigation }) {
 
@@ -17,7 +18,7 @@ export default function InitialLoading({ navigation }) {
   const handleClearStack = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: MyString.HomeFirst }],
+      routes: [{ name: MyString.Staff_Login }],
     });
   };
 

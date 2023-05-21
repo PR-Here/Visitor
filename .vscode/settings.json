@@ -1,0 +1,8 @@
+{
+    "docwriter.style": "Auto-detect",
+    "docwriter.progress.trackClasses": true,
+    "docwriter.progress.trackTypes": true,
+    "docwriter.progress.trackMethods": true,
+    "docwriter.hotkey.mac": "⌥ + .",
+    "java.compile.nullAnalysis.mode": "automatic"
+}

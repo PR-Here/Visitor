@@ -15,7 +15,7 @@ import {
   UserPersonalForm,
   VisitSummary,
   ScannerImage,
-  ForgotPassword
+  ForgotPassword,WelcomeLastScanner
 } from "../screen";
 
 const Stack = createStackNavigator();
@@ -48,6 +48,7 @@ export default function MyStack() {
       <Stack.Screen name={MyString.My_Visit_Summary} component={VisitSummary} />
       <Stack.Screen name={MyString.Scanner_screen} component={ScannerImage} />
       <Stack.Screen name={MyString.Forgot_Password} component={ForgotPassword} />
+      <Stack.Screen name={MyString.Welcome_Last_Scanner} component={WelcomeLastScanner} />
     </Stack.Navigator>
   );
 }

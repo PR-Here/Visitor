@@ -45,27 +45,31 @@ export default function Home({ navigation }) {
     <SafeAreaView style={Styles.container}>
       {!ShowScanner ? (
         <View>
+          {/* App logo */}
+          <Image
+            style={Styles.appLogo}
+            resizeMode="contain"
+            source={MyImage.LOGO}
+          />
+          <Text style={Styles.vizmoText}>Vizmo</Text>
+          <Text style={Styles.welcomeText}>Welcomes you</Text>
+          <Text style={Styles.scanQrTextText}>Scan QR</Text>
           <Image style={Styles.qrCodeImage} source={MyImage.QRCODE} />
-          <MyButton
-            onPress={handleClick}
-            title="Scan Qr Code"
-            colors={[MyColor.GREEN, MyColor.GREEN]}
-            containerStyle={Styles.scanButton}
-          />
-          <MyButton
-            onPress={handleGuestClick}
-            title="Guest Login"
-            colors={[MyColor.GREEN, MyColor.GREEN]}
-            containerStyle={Styles.scanButton}
-          />
-          <MyButton
-            onPress={handleStaffClick}
-            title="Staff Login"
-            colors={[MyColor.GREEN, MyColor.GREEN]}
-            containerStyle={Styles.scanButton}
-          />
+          <Text style={Styles.scanQrTextText}>Or</Text>
+          {/* Link View */}
+          <View style={Styles.linkView}>
+            <View style={Styles.openLinkView}>
+              <Text style={Styles.withoutLinkText}>Open</Text>
+              <Text onPress={()=>navigation.navigate(MyString.Login_by_phone)} style={Styles.linkText}>touchless.Vizmo.in</Text>
+              <Text style={Styles.withoutLinkText}>on your</Text>
+            </View>
+            <Text style={Styles.withoutLinkText}>
+              mobile browser to check in using your mobile phone.
+            </Text>
+          </View>
         </View>
       ) : null}
+
       {ShowScanner ? (
         <QRCodeScanner
           onRead={onSuccess}
@@ -88,6 +92,16 @@ export default function Home({ navigation }) {
           }
         />
       ) : null}
+
+      {/* Bottom Logo */}
+      <View style={Styles.bottomView}>
+        <Image
+          style={Styles.bottomLogo}
+          resizeMode="contain"
+          source={MyImage.LOGO}
+        />
+        <Text style={Styles.bottomAppText}>Vizmo</Text>
+      </View>
     </SafeAreaView>
   );
 }

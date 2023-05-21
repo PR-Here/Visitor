@@ -8,6 +8,7 @@ import {
   Alert,
   TextInput,
   Keyboard,
+  Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import MyButton from "../../component/MyButton";
@@ -17,54 +18,16 @@ import Header from "../../component/Header";
 import { MyColor } from "../../utils/MyColor";
 import { MyString } from "../../utils/MyString";
 import CheckBox from "@react-native-community/checkbox";
+import { MyImage } from "../../utils/MyImage";
 
-export default function VisitSummary({ navigation }) {
+export default function VisitSummary({ navigation, route }) {
+  console.log(route?.params);
+  const { name, comanyName, email } = route?.params?.formData;
   const [error, setError] = useState("");
-  const [data, setData] = useState([
-    {
-      id: "1",
-      name: "First Name",
-      value: "Visitor",
-    },
-    {
-      id: "2",
-      name: "Last Name",
-      value: "App",
-    },
-    {
-      id: "3",
-      name: "Email Id",
-      value: "Visitor@gmail.com",
-    },
-    {
-      id: "4",
-      name: "Company Name",
-      value: "Visitor.com",
-    },
-    {
-      id: "5",
-      name: "Purpose of Visit",
-      value: "Interview",
-    },
-    {
-      id: "6",
-      name: "Location",
-      value: "Hr Department",
-    },
-    {
-      id: "7",
-      name: "Meet Person Name",
-      value: "Tom",
-    },
-    {
-      id: "8",
-      name: "Are you carrying company laptop?",
-      value: "Yes",
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const handlePress = () => {
-    navigation.navigate(MyString.Scanner_screen);
+    navigation.navigate(MyString.Welcome_Last_Scanner);
   };
 
   const handleBackPress = () => {
@@ -74,22 +37,48 @@ export default function VisitSummary({ navigation }) {
   return (
     <SafeAreaView style={Styles.container}>
       <Header navigation={navigation} />
-      <Text style={Styles.visitReasontext}>Your Visit Summary</Text>
+      <Text style={Styles.visitReasontext}>Summary of your visit</Text>
       <View style={Styles.flatList}>
         <FlatList
           showsVerticalScrollIndicator={false}
           bounces={false}
-          data={data}
+          data={[1]}
           renderItem={({ item, index }) => {
             return (
               <View style={Styles.firstNameView}>
-                <Text style={Styles.firstNameText}>{item?.name}</Text>
-                <Text style={Styles.Colum}>:</Text>
-                <Text style={Styles.firstNameText}>{item?.value}</Text>
+                <View style={Styles.ImageAndTextView}>
+                  <Image
+                    resizeMode="contain"
+                    style={Styles.profileImage}
+                    source={MyImage.PLACEHOLDER}
+                  />
+                  <View style={Styles.profileView}>
+                    <View style={Styles.logoView}>
+                      <Image
+                        resizeMode="contain"
+                        style={Styles.appLogo}
+                        source={MyImage.LOGO}
+                      />
+                      <Text style={Styles.AppText}>Vizmo</Text>
+                    </View>
+                    <Text style={Styles.userNameText}>{name}</Text>
+                    <Text style={Styles.visitorText}>Visitor</Text>
+                    <Text style={Styles.visitorText}>
+                      Meeting : Kunal Goswami
+                    </Text>
+                    <Text style={Styles.visitorText}>Jan 23, 2023 2:15 am</Text>
+                  </View>
+                </View>
               </View>
             );
           }}
         />
+        <Text
+          onPress={() => navigation.goBack()}
+          style={Styles.editDetailsText}
+        >
+          Edit Details
+        </Text>
       </View>
 
       {/* Button View */}
@@ -97,16 +86,24 @@ export default function VisitSummary({ navigation }) {
         {/* Back Button */}
         <MyButton
           onPress={handleBackPress}
-          colors={[MyColor.BLACK, MyColor.BLACK]}
+          colors={[MyColor.TRANS, MyColor.TRANS]}
           title="Back"
-          containerStyle={Styles.nextButton}
+          containerStyle={Styles.backButton}
+          rightIcon={true}
+          leftIcon={false}
+          titleStyle={{}}
+          leftIconStyle={{}}
         />
         {/* Next Button */}
         <MyButton
           onPress={handlePress}
           colors={[MyColor.GREEN, MyColor.GREEN]}
-          title="Next"
+          title="Continue"
           containerStyle={Styles.nextButton}
+          rightIcon={false}
+          leftIcon={true}
+          leftIconStyle={{ tintColor: "white" }}
+          titleStyle={Styles.nextBtnText}
         />
       </View>
     </SafeAreaView>

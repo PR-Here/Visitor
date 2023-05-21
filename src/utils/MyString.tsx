@@ -11,7 +11,8 @@ export const MyString ={
     User_Personal_Form:"User_Personal_Form",
     My_Visit_Summary:"My_Visit_Summary",
     Scanner_screen:"Scanner_screen",
-    Forgot_Password:"Forgot_Password"
+    Forgot_Password:"Forgot_Password",
+    Welcome_Last_Scanner:"Welcome_Last_Scanner"
 
 
     

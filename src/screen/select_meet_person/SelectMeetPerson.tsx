@@ -6,6 +6,8 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
+  TextInput,
+  Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import MyButton from "../../component/MyButton";
@@ -15,6 +17,7 @@ import Header from "../../component/Header";
 import { MyColor } from "../../utils/MyColor";
 import { MyString } from "../../utils/MyString";
 import { Dropdown } from "react-native-element-dropdown";
+import { MyImage } from "../../utils/MyImage";
 
 export default function SelectMeetPerson({ navigation }) {
   const [error, setError] = useState("");
@@ -32,12 +35,12 @@ export default function SelectMeetPerson({ navigation }) {
   const [isFocus, setIsFocus] = useState(false);
 
   const handlePress = () => {
-    if (value == null) {
-      setError("Please select the Meet Person.");
-    } else {
-      setError("");
-      navigation.navigate(MyString.User_Personal_Form);
-    }
+    // if (value == null) {
+    //   setError("Please select the Meet Person.");
+    // } else {
+    setError("");
+    navigation.navigate(MyString.User_Personal_Form);
+    // }
   };
 
   const handleBackPress = () => {
@@ -49,50 +52,35 @@ export default function SelectMeetPerson({ navigation }) {
       <Header navigation={navigation} />
       <Text style={Styles.visitReasontext}>Select your meet person</Text>
       <View style={Styles.flatList}>
-        <Dropdown
-          style={[Styles.dropdown, isFocus && { borderColor: "green" }]}
-          placeholderStyle={Styles.placeholderStyle}
-          selectedTextStyle={Styles.selectedTextStyle}
-          inputSearchStyle={Styles.inputSearchStyle}
-          iconStyle={Styles.iconStyle}
-          itemTextStyle={Styles.selectedTextStyle}
-          data={data}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? "Select Person" : "..."}
-          searchPlaceholder="Search Person..."
-          value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={(item: any) => {
-            setValue(item.value);
-            setIsFocus(false);
-          }}
-        />
+        <Image source={MyImage.SEARCH} style={Styles.searchImage} />
+        <TextInput style={Styles.textInput} placeholder="Search by name" />
       </View>
       {value == null ? (
         <MyErrorMsg msg={error} show={true} style={Styles.errorMsg} />
       ) : null}
+      {/* Button View */}
       <View style={Styles.buttonView}>
         {/* Back Button */}
         <MyButton
-          onPress={handleBackPress}
-          colors={[MyColor.BLACK, MyColor.BLACK]}
           title="Back"
-          containerStyle={Styles.nextButton}
+          onPress={handleBackPress}
+          colors={[MyColor.TRANS, MyColor.TRANS]}
+          containerStyle={Styles.backButton}
+          rightIcon={true}
+          leftIcon={false}
+          leftIconStyle={{}}
         />
+
         {/* Next Button */}
         <MyButton
+          title="Continue"
           onPress={handlePress}
-          colors={
-            value != null
-              ? [MyColor.GREEN, MyColor.GREEN]
-              : [MyColor.GREY, MyColor.GREY]
-          }
-          title="Next"
-          containerStyle={Styles.nextButton}
+          colors={[MyColor.GREEN, MyColor.GREEN]}
+          containerStyle={Styles.continueBtn}
+          rightIcon={false}
+          leftIcon={true}
+          leftIconStyle={{ tintColor: "white" }}
+          titleStyle={Styles.nextBtnText}
         />
       </View>
     </SafeAreaView>

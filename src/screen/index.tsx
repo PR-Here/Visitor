@@ -10,4 +10,5 @@ export { default as UserPersonalForm} from './user_personal_form/UserPersonalFor
 export { default as VisitSummary} from './visit_summary/VisitSummary';
 export { default as ScannerImage} from './Scanner_screen/ScannerImage';
 export { default as ForgotPassword} from './forgot_Password/ForgotPassword';
+export { default as WelcomeLastScanner} from './welcome_last/WelcomeLastScanner';
 

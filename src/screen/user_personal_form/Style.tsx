@@ -15,15 +15,17 @@ export const Styles = StyleSheet.create({
   visitReasontext: {
     fontFamily: FontName.SEN_BOLD,
     color: MyColor.BLACK,
-    fontSize: hp(5),
-    width: "80%",
-    marginTop: hp(2),
+    fontSize: hp(3),
+    width: "100%",
+    marginTop: hp(8),
+    textAlign:'center'
   },
 
   nextButton: {
     width: wp(40),
     height: hp(6),
     alignSelf: "flex-end",
+    justifyContent:'center'
   },
   errorMsg: {
     alignSelf: "center",
@@ -32,7 +34,7 @@ export const Styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
-    bottom: hp(14),
+    bottom: hp(10),
     fontSize: FontSize.TWO_POINT_eight,
   },
   buttonView: {
@@ -109,6 +111,15 @@ export const Styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    marginTop: hp(2),
+    marginTop: hp(1),
+  },
+  nextBtnText:{
+    color:MyColor.WHITE
+  },
+  backButton: {
+    height: hp(6),
+    justifyContent: "center",
+    borderColor: MyColor.GREEN,
+    backgroundColor:MyColor.TRANS
   },
 });

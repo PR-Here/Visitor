@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Keyboard,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import Styles from "./Style";
@@ -15,23 +16,34 @@ import { MyImage } from "../../utils/MyImage";
 import { MyColor } from "../../utils/MyColor";
 import Header from "../../component/Header";
 import { MyString } from "../../utils/MyString";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import AppLoader from "../../utils/AppLoader";
+import { Login_By_PhoneNumber, OTP_VERIFY } from "../../apiCall/ApiCall";
 
 export default function OtpVerify({ navigation, route }) {
   const { code, number } = route?.params;
   const [timer, setTimer] = useState(60);
   const [error, setError] = useState("Enter 4-digit code");
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
   let otpInput = useRef(null);
 
   // Next Button Click
-  const handleClick = () => {
-    // navigation.navigate("Dashboard");
+  const handleClick = async () => {
     if (otp == "") {
       setError("Enter 4-digit code");
     } else if (otp.length != 4) {
       setError("Enter valid OTP");
     } else {
-      navigation.navigate(MyString.Visit_Purpose)
+      setLoading(true);
+      const res = await OTP_VERIFY(number, otp);
+      if (res?.statusCode == "0") {
+        setLoading(false);
+        navigation.navigate(MyString.Visit_Purpose);
+      } else {
+        setLoading(false);
+        setError(res?.responseMsg);
+      }
     }
   };
 
@@ -51,8 +63,15 @@ export default function OtpVerify({ navigation, route }) {
     return () => clearInterval(interval);
   }, [timer]);
 
-  const resendOtp = () => {
-    setTimer(60); // reset the timer
+  const resendOtp = async () => {
+    setLoading(true);
+    const res = await Login_By_PhoneNumber(number);
+    if (res?.statusCode == "0") {
+      setError("Otp Sent Successfully.");
+      setTimer(60);
+    } else {
+      setError("Something went wrong! Please try again later.");
+    }
   };
 
   return (
@@ -74,7 +93,12 @@ export default function OtpVerify({ navigation, route }) {
           ref={otpInput}
           inputCount={4}
           autoFocus={false}
-          handleTextChange={(e) => setOtp(e)}
+          handleTextChange={(e) => {
+            if (e.length == 4) {
+              Keyboard.dismiss();
+            }
+            setOtp(e);
+          }}
         />
         <Text style={Styles.enterCodeText}>{error}</Text>
       </View>
@@ -109,8 +133,12 @@ export default function OtpVerify({ navigation, route }) {
           containerStyle={Styles.button}
           onPress={handleClick}
           titleStyle={Styles.buttonText}
+          leftIconStyle={{}}
+          leftIcon={false}
+          rightIcon={false}
         />
       </View>
+      <AppLoader show={loading} />
     </SafeAreaView>
   );
 }

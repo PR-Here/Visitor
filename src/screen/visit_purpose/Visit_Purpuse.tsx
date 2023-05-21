@@ -72,15 +72,14 @@ export default function Visit_Purpuse({ navigation }) {
   const [error, setError] = useState("");
   const [myIndex, setMyIndex] = useState(null);
 
-  useEffect(() => {}, [error]);
-
   const _renderItem = (item: any, index: number) => {
     return (
       <TouchableOpacity
         style={[
           Styles.tochableView,
           {
-            borderColor: myIndex == index ? MyColor.GREEN : MyColor.GREY,
+            backgroundColor: myIndex == index ? MyColor.GREEN : MyColor.TRANS,
+            flexBasis: `${90 / 3}%`,
           },
         ]}
         onPress={() => {
@@ -95,44 +94,80 @@ export default function Visit_Purpuse({ navigation }) {
           }
         }}
       >
-        <Text style={Styles.visitName}>{item?.name}</Text>
+        <Text
+          style={[
+            Styles.visitName,
+            { color: myIndex == index ? MyColor.WHITE : MyColor.BLACK },
+          ]}
+        >
+          {item?.name}
+        </Text>
       </TouchableOpacity>
     );
   };
 
   const handlePress = () => {
     if (!isSelect) {
-      setError("Please select the Reason for Visit.");
+      setError("Please select the Purpose of Visit.");
     } else if (isSelect) {
       setError("");
-      navigation.navigate(MyString.Select_Location);
+      navigation.navigate(MyString.Select_Meet_Person);
     }
+  };
+
+  const handleBackClick = () => {
+    navigation.goBack();
   };
 
   return (
     <SafeAreaView style={Styles.container}>
       <Header navigation={navigation} />
-      <Text style={Styles.visitReasontext}>Reason For Visit</Text>
+      <Text style={Styles.visitReasontext}>Purpose of your Visit</Text>
       <View style={Styles.flatList}>
         <FlatList
           numColumns={3}
           data={data}
           renderItem={({ item, index }) => _renderItem(item, index)}
+          contentContainerStyle={{ flexGrow: 1 }}
         />
       </View>
       {!isSelect ? (
         <MyErrorMsg msg={error} show={true} style={Styles.errorMsg} />
       ) : null}
-      <MyButton
-        onPress={handlePress}
-        colors={
-          isSelect
-            ? [MyColor.GREEN, MyColor.GREEN]
-            : [MyColor.GREY, MyColor.GREY]
-        }
-        title="Next"
-        containerStyle={Styles.nextButton}
-      />
+
+      {/* Button View */}
+      <View style={Styles.buttonView}>
+        {/* Back Button */}
+        <MyButton
+          title="Back"
+          onPress={handleBackClick}
+          colors={[MyColor.TRANS, MyColor.TRANS]}
+          containerStyle={Styles.backButton}
+          rightIcon={true}
+          leftIcon={false}
+          leftIconStyle={{}}
+        />
+
+        {/* Next Button */}
+        <MyButton
+          title="Continue"
+          onPress={handlePress}
+          colors={
+            myIndex == null
+              ? [MyColor.GREY, MyColor.GREY]
+              : [MyColor.GREEN, MyColor.GREEN]
+          }
+          containerStyle={Styles.continueBtn}
+          titleStyle={{
+            color: myIndex == null ? MyColor.BLACK : MyColor.WHITE,
+          }}
+          rightIcon={false}
+          leftIcon={true}
+          leftIconStyle={{
+            tintColor: myIndex == null ? MyColor.BLACK : MyColor.WHITE,
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 }

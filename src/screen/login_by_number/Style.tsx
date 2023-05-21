@@ -10,10 +10,10 @@ const Styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: hp(2),
-    marginHorizontal:hp(3)
+    marginHorizontal: hp(3),
   },
   loginButton: {
-    width: wp("90%"),
+    width: wp("100%"),
     height: hp("6%"),
     justifyContent: "center",
     alignItems: "center",
@@ -22,18 +22,24 @@ const Styles = StyleSheet.create({
   what_is_text: {
     fontFamily: FontName.SEN_BOLD,
     color: MyColor.BLACK,
-    fontSize: hp(5),
-    width: "60%",
-    marginTop: hp(2),
+    fontSize: hp(3),
+    width: "100%",
+    marginTop: hp(10),
+    textAlign: "center",
   },
   tap_to_text: {
     fontFamily: FontName.SEN,
     color: MyColor.BLACK,
     marginTop: hp(4),
-    fontSize: FontSize.ONE_POINT_EIGHT,
+    fontSize: FontSize.ONE_POINT_FIVE,
+    textAlign: "center",
   },
   countryCodeView: {
-    width: hp(8),
+    width: hp(5),
+    borderRightWidth: 1.6,
+    borderLeftColor: MyColor.GREEN,
+    height: hp(5.7),
+    justifyContent: "center",
   },
   countryCodeText: {
     fontFamily: FontName.SEN,
@@ -51,23 +57,40 @@ const Styles = StyleSheet.create({
   },
   phoneView: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    width: "100%",
+    borderWidth: 1.5,
+    width: "95%",
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "space-between",
     height: hp(6),
-    marginTop:hp(3)
+    marginTop: hp(7),
+    paddingHorizontal: 10,
+    borderRadius: hp(0.4),
   },
   errorMsg: {
-    marginLeft: hp(0),
+    marginLeft: hp(2),
     marginTop: hp(1),
   },
   continueBtn: {
-    width: "100%",
     height: hp(6),
     marginTop: hp(15),
+    justifyContent: "center",
   },
+  backButton: {
+    height: hp(6),
+    marginTop: hp(15),
+    justifyContent: "center",
+    borderColor: MyColor.GREEN,
+  },
+  buttonView: {
+    position: "absolute",
+    bottom: hp(5),
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    flexDirection: "row",
+  },
+  buttontext: {},
 });
 
 export default Styles;

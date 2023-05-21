@@ -44,6 +44,8 @@ export const Styles = StyleSheet.create({
     width: "100%",
     height: hp(6),
     marginTop: hp(14),
+    alignItems:'center',
+    justifyContent:'center'
   },
   forgotText: {
     fontFamily: FontName.SEN_BOLD,
